@@ -1,102 +1,112 @@
-<script>
+<!DOCTYPE html>
 
-    function computerPlay(){
-        let act;
-        let randomNum = Math.floor(Math.random()*3);
-        if(randomNum == 0){
-            act = "rock";
-        } else if (randomNum == 1) {
-            act = "paper";
-        } else {
-            act = "scissors";
-        }
-        return act;
-    }
+<head>
+    <title>ROCK, PAPER OR SCISSORS</title>
 
-    function playRound(playerAct, computerAct){
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        var playerActInsensitive = playerAct.toUpperCase();
-        var computerActInsensitive = computerAct.toUpperCase();
+<body>
 
-        var roundResult;
+    <div class="container">
 
-        // if(playerActInsensitive===computerActInsensitive){
-        //     console.log("It's a draw! :)");
-        // } else if (playerActInsensitive==="PAPER" && computerActInsensitive==="ROCK"){
-        //     console.log("Player beated Computer with " + playerActInsensitive +" beating " + computerActInsensitive);
-        // } else if (playerActInsensitive==="PAPER" && computerActInsensitive==="SCISSORS"){
-        //     console.log("Computer beated Player with " + computerActInsensitive +" beating " + playerActInsensitive);
-        // } else if (playerActInsensitive==="ROCK" && computerActInsensitive==="SCISSORS"){
-        //     console.log("Player beated Computer with " + playerActInsensitive +" beating " + computerActInsensitive);
-        // } else if (playerActInsensitive==="ROCK" && computerActInsensitive==="PAPER"){
-        //     console.log("Computer beated Player with " + computerActInsensitive +" beating " + playerActInsensitive);
-        // } else if (playerActInsensitive==="SCISSORS" && computerActInsensitive==="ROCK"){
-        //     console.log("Computer beated Player with " + computerActInsensitive +" beating " + playerActInsensitive);
-        // } else if (playerActInsensitive==="SCISSORS" && computerActInsensitive==="PAPER"){
-        //     console.log("Player beated Computer with " + playerActInsensitive + " beating " + computerActInsensitive);
-        // }
+        <div class="results">
+            <div class="playerResults">
+                <p>YOU</p>
+                <div class="numPlayRes">
+                    0
+                </div>
+            </div>
+            <div class="computerResults">
+                <p>COMPUTER</p>
+                <div class="numPcRes">
+                    0
+                </div>
+            </div>
+        </div>
 
-        if(playerActInsensitive===computerActInsensitive){
-            roundResult = 0;
-        } else if (playerActInsensitive==="PAPER" && computerActInsensitive==="ROCK"){
-            roundResult = 1;
-        } else if (playerActInsensitive==="PAPER" && computerActInsensitive==="SCISSORS"){
-            roundResult = 2;
-        } else if (playerActInsensitive==="ROCK" && computerActInsensitive==="SCISSORS"){
-            roundResult = 1;
-        } else if (playerActInsensitive==="ROCK" && computerActInsensitive==="PAPER"){
-            roundResult = 2;
-        } else if (playerActInsensitive==="SCISSORS" && computerActInsensitive==="ROCK"){
-            roundResult = 2;
-        } else if (playerActInsensitive==="SCISSORS" && computerActInsensitive==="PAPER"){
-            roundResult = 1;
-        }
         
-        return roundResult;
-    }
+        <div class="topMessage">
+            <h1>Play the classic Rock, Paper or Scissors against me!</h3>
+        </div>
 
-    function game(){
-        let nRoundsPlayerWon = 0;
-        let nRoundsComputerWon = 0;
+        <div class="playerButtons">
+            <button><img src="./rock.png" id="rockBtn"></button>
+            <button><img src="./paper.png" id="paperBtn"></button>
+            <button><img src="./scissors.png" id="scissorBtn"></button>
+        </div>
+    </div>
 
-        var roundResult;
+    <script>
 
-        for(var i=0; i<5; i++){
-            let playerAct;
-            while(playerAct!="ROCK" && playerAct!="SCISSORS" && playerAct!="PAPER"){
-                playerAct = prompt("Rock Paper or Scissors?");
-                alert(playerAct);
-                if(playerAct!=="ROCK" && playerAct!=="SCISSORS" && playerAct!=="PAPER"){
-                    alert("TYPO!!!!!!");
-                }
-            }
-
-            roundResult = playRound(playerAct, computerPlay());
-            if(roundResult === 1){
-                nRoundsPlayerWon++;
-                alert("You won!");
-            } else if (roundResult === 2){
-                nRoundsComputerWon++;
-                alert("You lost!");
+        function computerPlay() {
+            let act;
+            let randomNum = Math.floor(Math.random() * 3);
+            if (randomNum == 0) {
+                act = "rock";
+            } else if (randomNum == 1) {
+                act = "paper";
             } else {
-                alert("Draw!");
+                act = "scissors";
             }
+            return act;
         }
 
-        console.log(nRoundsPlayerWon);
-        console.log(nRoundsComputerWon);
+        function playRound(playerAct, computerAct) {
 
-        if(nRoundsPlayerWon>nRoundsComputerWon){
-            console.log("Player beated Computer with " + nRoundsPlayerWon + " against " + nRoundsComputerWon);
-        } else if (nRoundsPlayerWon<nRoundsComputerWon){
-            console.log("Computer beated Player with " + nRoundsComputerWon + " against " + nRoundsPlayerWon);
-        } else {
-            console.log("It's a draw!")
+            var computerActInsensitive = computerAct.toUpperCase();
+
+            var roundResult;
+
+            if (playerAct === "rockBtn" && computerActInsensitive === "ROCK") {
+                roundResult = 1;
+            } else if (playerAct === "paperBtn" && computerActInsensitive === "SCISSORS") {
+                roundResult = 2;
+            } else if (playerAct === "rockBtn" && computerActInsensitive === "SCISSORS") {
+                roundResult = 1;
+            } else if (playerAct === "rockBtn" && computerActInsensitive === "PAPER") {
+                roundResult = 2;
+            } else if (playerAct === "scissorBtn" && computerActInsensitive === "ROCK") {
+                roundResult = 2;
+            } else if (playerAct === "scissorBtn" && computerActInsensitive === "PAPER") {
+                roundResult = 1;
+            } else {
+                roundResult = 3;
+            }
+
+            return roundResult;
         }
-    }
 
-    game();
+        function playerBtnClicked(e) {
+            const btnClicked = e.target.id;
 
-</script>
+            console.log(btnClicked);
 
+            const result = playRound(btnClicked, computerPlay());
 
+            console.log(result);
+
+            if(result === 1){
+                const playRes = document.querySelector('.numPlayRes');
+                const resAtual = playRes.textContent;
+                const resFuturo = Number(resAtual) + 1;
+                playRes.textContent=resFuturo;
+            } else if (result === 2){
+                const playRes = document.querySelector('.numPcRes');
+                const resAtual = playRes.textContent;
+                const resFuturo = Number(resAtual) + 1;
+                playRes.textContent=resFuturo;
+            } else if (result === 3) {
+                alert("It's a draw!");
+            }
+
+        }
+
+        const btns = document.querySelectorAll('.playerButtons');
+        btns.forEach(btns => btns.addEventListener('click', playerBtnClicked));
+
+    </script>
+
+</body>
+
+</html>

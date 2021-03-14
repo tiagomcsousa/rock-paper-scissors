@@ -1,0 +1,50 @@
+html {
+    font-size: 10px;
+    background: url('./background.jpg') center;
+}
+
+.container {
+    min-height: 95vh;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 5px;
+}
+
+.results{
+    color: white;
+    font-size: x-large;
+    position: fixed;
+    top: 20%;
+    display: inline-flex;
+}
+
+.playerResults {
+    padding-right: 20%;
+    text-align: center;
+}
+
+.computerResults {
+    padding-left: 20%;
+    text-align: center;
+}
+
+.topMessage {
+    color: white;
+    font-size: x-large;
+    text-align: center;
+    position: fixed;
+    top: 40%;
+  }
+
+.playerButtons{
+    position: fixed;
+    top: 60%;
+  }
+
+  .playerButtons img {
+    width: 100px;
+    height: 100px;
+  }
